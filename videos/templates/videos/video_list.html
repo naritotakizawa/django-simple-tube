@@ -1,0 +1,18 @@
+{% extends 'videos/base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+  {% for video in video_list %}
+    <div class="col-6 col-md-2">
+      <a href="{% url 'videos:play' video.pk %}">
+        {% if video.thumbnail %}
+          <img class="img-thumbnail" src="{{ video.thumbnail.url }}" alt="{{ video.title }}">
+        {% else %}
+          <img class="img-thumbnail" src="{% static 'videos/noimage.jpg' %}" alt="{{ video.title }}">
+        {% endif %}
+      </a>
+      <p class="text-center">{{ video.title }}</p>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
